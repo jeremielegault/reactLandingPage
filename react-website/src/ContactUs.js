@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import FormContext from "./Reducers/FormContext";
 
@@ -34,6 +34,28 @@ const ContactUs = () => {
     e.preventDefault();
     console.log("You clicked submit.");
   };
+
+  const formContext = useContext(FormContext);
+
+  // const postToDb = () => {
+  //   fetch("http://localhost:8000/addreport", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(formContext.state),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.status === 201) {
+  //         console.log("Success!");
+  //         history.push("/thankyou");
+  //       } else {
+  //         console.log("Error");
+  //       }
+  //     });
+  // };
 
   return (
     <Wrapper>
@@ -159,6 +181,7 @@ const ContactUs = () => {
               ...formData,
             });
             handleSubmit(e);
+            // postToDb();
           }}
         >
           Submit Form

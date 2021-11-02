@@ -7,7 +7,7 @@ const morgan = require("morgan");
 
 var cors = require("cors");
 
-const { addReservations, getSingleReservation } = require("./handlers");
+const { addReport, getSingleReport } = require("./handlers");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -26,10 +26,10 @@ express()
   // ---------------------------------
   // add new endpoints here 👇
   // Add a reservation
-  .post("/addreservations", addReservations)
+  .post("/addreport", addReport)
 
   // Get single reservation based on ID
-  .get("/getreservation/:id", getSingleReservation)
+  .get("/getreport/:id", getSingleReport)
 
   //
   // add new endpoints here ☝️
