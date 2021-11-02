@@ -2,7 +2,7 @@ import React from "react";
 
 export const FormContext = React.createContext();
 
-// This is to set a unique reservation ID for each user's reservation.
+// This is to set a unique reservation ID for each user's form.
 const { v4: uuidv4 } = require("uuid");
 
 // This is what the object that contains all the user input looks like.
@@ -21,7 +21,7 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    // This sets the start date, end date and duration of the user's party
+    // This receives the information from the form.
     case "receive-form-info": {
       return {
         ...state,
@@ -36,8 +36,6 @@ function reducer(state, action) {
         province: action.province,
       };
     }
-
-    // This receives the resuts that were generated on the results page for the user.
 
     default:
       throw new Error(`unrecognized action: ${action.type}`);

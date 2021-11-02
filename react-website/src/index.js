@@ -5,10 +5,8 @@ import App from "./App";
 import { FormProvider } from "./Reducers/FormContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <FormProvider>
-      <App />]
-    </FormProvider>
-  </React.StrictMode>,
+  <FormProvider>
+    <App />
+  </FormProvider>,
   document.getElementById("root")
 );

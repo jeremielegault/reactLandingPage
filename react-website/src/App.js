@@ -7,7 +7,9 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path={"/ContactUs"} component={ContactUs}></Route>
+          <Route exact path="/contactus">
+            <ContactUs />
+          </Route>
         </Switch>
       </Router>
     </div>

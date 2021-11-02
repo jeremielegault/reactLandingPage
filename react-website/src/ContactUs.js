@@ -30,10 +30,10 @@ const ContactUs = () => {
     province,
   });
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   console.log("You clicked submit.");
-  // }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("You clicked submit.");
+  };
 
   return (
     <Wrapper>
@@ -43,42 +43,36 @@ const ContactUs = () => {
         <Label htmlFor="firstName">First name</Label>
         <Input
           type="text"
-          // onChange={this.handleFormChanges}
-          // value={this.state.firstName}
           name="firstName"
-          placeholder="Enter your first name"
+          value={formData.firstName}
           onChange={(event) => {
             setFormData({ ...formData, firstName: event.target.value });
           }}
-          value={formData.firstName}
+          placeholder="Enter your first name"
           required
         />
 
         <Label>Last name</Label>
         <Input
           type="text"
-          // onChange={this.handleFormChanges}
-          // value={this.state.lastName}
           name="lastName"
-          placeholder="Enter your last name"
+          value={formData.lastName}
           onChange={(event) => {
             setFormData({ ...formData, lastName: event.target.value });
           }}
-          value={formData.lastName}
+          placeholder="Enter your last name"
           required
         />
 
         <Label>Email</Label>
         <Input
           type="text"
-          // onChange={this.handleFormChanges}
-          // value={this.state.email}
           name="email"
-          placeholder="Enter your email"
+          value={formData.email}
           onChange={(event) => {
             setFormData({ ...formData, email: event.target.value });
           }}
-          value={formData.email}
+          placeholder="Enter your email"
           required
         />
 
@@ -88,11 +82,11 @@ const ContactUs = () => {
         <Input
           type="text"
           name="shippingName"
-          placeholder="Enter your shipping name"
+          value={formData.shippingName}
           onChange={(event) => {
             setFormData({ ...formData, shippingName: event.target.value });
           }}
-          value={formData.shippingName}
+          placeholder="Enter your shipping name"
           required
         />
 
@@ -100,11 +94,11 @@ const ContactUs = () => {
         <Input
           type="text"
           name="shippingStreet"
-          placeholder="Enter your street address"
+          value={formData.shippingStreet}
           onChange={(event) => {
             setFormData({ ...formData, shippingStreet: event.target.value });
           }}
-          value={formData.shippingStreet}
+          placeholder="Enter your street address"
           required
         />
 
@@ -112,11 +106,11 @@ const ContactUs = () => {
         <Input
           type="text"
           name="shippingCity"
-          placeholder="Enter your city"
+          value={formData.shippingCity}
           onChange={(event) => {
             setFormData({ ...formData, shippingCity: event.target.value });
           }}
-          value={formData.shippingCity}
+          placeholder="Enter your city"
           required
         />
 
@@ -124,14 +118,14 @@ const ContactUs = () => {
         <Input
           type="text"
           name="shippingPostalZipCode"
-          placeholder="Enter your postal/zip code"
+          value={formData.shippingPostalZipCode}
           onChange={(event) => {
             setFormData({
               ...formData,
               shippingPostalZipCode: event.target.value,
             });
           }}
-          value={formData.shippingPostalZipCode}
+          placeholder="Enter your postal/zip code"
           required
         />
 
@@ -139,32 +133,32 @@ const ContactUs = () => {
         <Input
           type="text"
           name="country"
-          placeholder="Enter your Country"
+          value={formData.country}
           onChange={(event) => {
             setFormData({ ...formData, country: event.target.value });
           }}
-          value={formData.country}
+          placeholder="Enter your Country"
           required
         />
         <Label htmlFor="shippingStateProvince">Province</Label>
         <Input
           type="text"
           name="province"
+          value={formData.province}
           onChange={(event) => {
             setFormData({ ...formData, province: event.target.value });
           }}
-          value={formData.province}
           placeholder="Enter your province or state"
           required
         />
 
         <Button
           type="submit"
-          onClick={() => {
+          onClick={(e) => {
             receiveFormInfo({
               ...formData,
             });
-            // handleSubmit(formContext.state);
+            handleSubmit(e);
           }}
         >
           Submit Form
@@ -189,11 +183,6 @@ const Input = styled.input`
   border-radius: 10px;
   border: 3px solid black;
   font-size: 16px;
-  font-family: "Raleway", sans-serif;
-`;
-const Select = styled.select`
-  border-radius: 10px;
-  border: 3px solid black;
   font-family: "Raleway", sans-serif;
 `;
 
@@ -228,14 +217,5 @@ const Button = styled.button`
     /* border: solid #ae45ac; */
   }
 `;
-
-// const Img = styled.img`
-//   transition: transform 0.4s ease-in;
-//   &:hover {
-//     opacity: 0.9;
-//     transform: translateX(10%) translateY(0%);
-//   }
-//   /* padding-left: 50px; */
-// `;
 
 export default ContactUs;
