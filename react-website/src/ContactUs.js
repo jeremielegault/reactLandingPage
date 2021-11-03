@@ -1,8 +1,11 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 import FormContext from "./Reducers/FormContext";
 
 const ContactUs = () => {
+  const history = useHistory();
+
   const {
     state: {
       firstName,
@@ -32,30 +35,32 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    history.push("/confirmation");
     console.log("You clicked submit.");
   };
 
   const formContext = useContext(FormContext);
 
-  // const postToDb = () => {
-  //   fetch("http://localhost:8000/addreport", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(formContext.state),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.status === 201) {
-  //         console.log("Success!");
-  //         history.push("/thankyou");
-  //       } else {
-  //         console.log("Error");
-  //       }
-  //     });
-  // };
+  const postToDb = () => {
+    fetch("http://localhost:8000/addreport", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formContext.state),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 201) {
+          console.log("Success!");
+          console.log("formcontext", formContext.state);
+          // history.push("/thankyou");
+        } else {
+          console.log("Error");
+        }
+      });
+  };
 
   return (
     <Wrapper>
@@ -181,7 +186,7 @@ const ContactUs = () => {
               ...formData,
             });
             handleSubmit(e);
-            // postToDb();
+            postToDb();
           }}
         >
           Submit Form
