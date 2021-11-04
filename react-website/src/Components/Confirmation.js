@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
+import { Link } from "react-router-dom";
 
 // Page that displays the user input across the app (actual suggestions are on the return page)
 
@@ -32,37 +33,59 @@ const Confirmation = () => {
 
   return (
     <Wrapper>
-      <h1>Confirmation</h1>
-      <h2>Your party is confirmed!</h2>
-      <h3>Please save your Reservation ID</h3>
-      <div>
+      <ConfirmWrap>
+        <h1>Confirmation</h1>
+        <h2>Verify your info:</h2>
+        <h3>Please save your confirmation ID</h3>
+        <div>
+          <P>
+            <FormItem>Confirmation ID: </FormItem>
+            {formContext.state._id}
+          </P>
+        </div>
+        <div>
+          <P>
+            <FormItem>First Name: </FormItem>
+            {formContext.state.firstName}
+          </P>
+        </div>
+        <div>
+          <P>
+            <FormItem>Last Name: </FormItem>
+            {formContext.state.lastName}
+          </P>
+        </div>
+        <div>
+          <P>
+            <FormItem>Your email: </FormItem>
+            {formContext.state.email}
+          </P>
+        </div>
         <P>
-          <FormItem>Reservation ID: </FormItem>
-          {formContext.state._id}
+          <FormItem>Shipping Name: </FormItem>
+          {formContext.state.shippingName}
         </P>
-      </div>
-      <div>
         <P>
-          <FormItem>First Name: </FormItem>
-          {formContext.state.firstName}
+          <FormItem>Street: </FormItem>
+          {formContext.state.shippingStreet}
         </P>
-      </div>
-      <div>
         <P>
-          <FormItem>Last Name: </FormItem>
-          {formContext.state.lastName}
+          <FormItem>City: </FormItem>
+          {formContext.state.shippingCity}
         </P>
-      </div>
-      <div>
         <P>
-          <FormItem>email: </FormItem>
-          {formContext.state.email}
+          <FormItem>Zip Code: </FormItem>
+          {formContext.state.shippingPostalZipCode}
         </P>
-      </div>
-      <P>
-        <FormItem>shippingName: </FormItem>
-        {formContext.state.shippingName}
-      </P>
+        <P>
+          <FormItem>Country: </FormItem>
+          {formContext.state.country}
+        </P>
+        <P>
+          <FormItem>Province: </FormItem>
+          {formContext.state.province}
+        </P>
+      </ConfirmWrap>
       <Button
         onClick={() => {
           postToDb();
@@ -71,6 +94,9 @@ const Confirmation = () => {
       >
         Save to database!
       </Button>
+      <Link to="/contactus">
+        <Button>Go Back</Button>
+      </Link>
     </Wrapper>
   );
 };
@@ -81,7 +107,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   flex: 1;
 `;
 
@@ -92,18 +118,35 @@ const P = styled.p`
 
 const FormItem = styled.span`
   font-weight: bold;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-size: 18px;
+  font-family: "Raleway", sans-serif;
 `;
 
 const Button = styled.button`
-  height: 60px;
-  width: 160px;
-  font-weight: bold;
-  background-color: #ebab00;
-  border: none;
-  border-radius: 5px;
+  font-family: "Raleway", sans-serif;
+  width: 250px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background: black;
   color: white;
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  border-radius: 4px;
+  border: 0;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    /* transform: rotate(5deg) scale(1.1); */
+    background: #fabf7c;
+    /* border: solid #ae45ac; */
+  }
+`;
+
+const ConfirmWrap = styled.div`
+  border: 3px solid #87a1c6;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;

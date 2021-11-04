@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import FormContext from "./Reducers/FormContext";
@@ -39,34 +39,10 @@ const ContactUs = () => {
     console.log("You clicked submit.");
   };
 
-  // const formContext = useContext(FormContext);
-
-  // const postToDb = () => {
-  //   fetch("http://localhost:8000/addreport", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(formContext.state),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.status === 201) {
-  //         console.log("Success!");
-  //         console.log("formcontext", formContext.state);
-  //         console.log("formadata", formData);
-  //         // history.push("/thankyou");
-  //       } else {
-  //         console.log("Error");
-  //       }
-  //     });
-  // };
-
   return (
     <Wrapper>
       <Form>
-        <H2>Customer information</H2>
+        <H2>Customer Information</H2>
 
         <Label htmlFor="firstName">First name</Label>
         <Input
@@ -80,7 +56,7 @@ const ContactUs = () => {
           required
         />
 
-        <Label>Last name</Label>
+        <Label>Last Name</Label>
         <Input
           type="text"
           name="lastName"
@@ -104,7 +80,7 @@ const ContactUs = () => {
           required
         />
 
-        <H2>Shipping details</H2>
+        <H2>Shipping Details</H2>
 
         <Label htmlFor="shippingName">Full name</Label>
         <Input
@@ -118,7 +94,7 @@ const ContactUs = () => {
           required
         />
 
-        <Label>Street address</Label>
+        <Label>Street Address</Label>
         <Input
           type="text"
           name="shippingStreet"
@@ -142,7 +118,7 @@ const ContactUs = () => {
           required
         />
 
-        <Label>Postal/Zip code</Label>
+        <Label>Postal/Zip Code</Label>
         <Input
           type="text"
           name="shippingPostalZipCode"
@@ -187,7 +163,6 @@ const ContactUs = () => {
               ...formData,
             });
             handleSubmit(e);
-            // postToDb();
           }}
         >
           Submit Form
