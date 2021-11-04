@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
-import { useHistory } from "react-router";
 
 // Page that displays the user input across the app (actual suggestions are on the return page)
 
@@ -10,29 +9,26 @@ const Confirmation = () => {
   // Access the context that contains every piece of user input
   const formContext = useContext(FormContext);
 
-  //   const history = useHistory();
-
-  // const { handleSubmit } = React.useContext(FormContext);
-
-  //   const handleSubmit = () => {
-  //     fetch("http://localhost:8000/addreservations", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formContext.state),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         if (data.status === 201) {
-  //           console.log("Success!");
-  //           history.push("/thankyou");
-  //         } else {
-  //           console.log("Error");
-  //         }
-  //       });
-  //   };
+  const postToDb = () => {
+    fetch("http://localhost:8000/addreport", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formContext.state),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 201) {
+          console.log("Success!");
+          console.log("formcontext", formContext.state);
+          // history.push("/thankyou");
+        } else {
+          console.log("Error");
+        }
+      });
+  };
 
   return (
     <Wrapper>
@@ -69,7 +65,7 @@ const Confirmation = () => {
       </P>
       <Button
         onClick={() => {
-          //   handleSubmit();
+          postToDb();
           console.log("you clicked");
         }}
       >
@@ -85,17 +81,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex: 1;
-  background-color: #bee0ed;
-`;
-
-const ConfirmWrap = styled.div`
-  border: 3px solid #87a1c6;
-  border-radius: 5px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 `;
 
 const P = styled.p`
